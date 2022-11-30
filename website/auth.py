@@ -19,7 +19,7 @@ def login():
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
             else:
-                flash('no bro', category='error')
+                flash('password doesn\'t match', category='error')
         else:    
             flash('The email you\'ve specified does\' match any account', category='error')
     return render_template("signin.html", user=current_user)
@@ -51,7 +51,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('ey, your got robbed of your credentials', category='success')
+            flash('account created', category='success')
             return redirect(url_for('views.home'))
             
     return render_template("signup.html", user=current_user)
